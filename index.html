@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
 <title>陈爱珍 24 岁快乐</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 <style>
   html, body { margin:0; padding:0; background:#000; overflow:hidden; height:100%; font-family:'Times New Roman', serif; }
   #loader { position:fixed; inset:0; background:#000; z-index:50; display:flex; flex-direction:column;
@@ -96,9 +95,20 @@
 
 <script type="importmap">
 { "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  "three": "./lib/three.module.js",
+  "three/addons/": "./lib/addons/"
 } }
+</script>
+
+<script>
+// 加载圈兜底：不依赖模块，哪怕模块加载失败也会淡出并提示
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('done'), 900);
+});
+setTimeout(() => {
+  const l = document.getElementById('loader');
+  if (l && !l.classList.contains('done')) l.classList.add('done');
+}, 6000);
 </script>
 
 <script type="module">
